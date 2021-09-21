@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Test.Application.ResponsesDto;
 
 namespace Test.Application.Products.Commands.Update
 {
@@ -19,7 +20,7 @@ namespace Test.Application.Products.Commands.Update
         public async Task<IActionResult> Handle(UpdateProduct request, CancellationToken cancellationToken)
         {
             if (request is null)
-                return new BadRequestObjectResult("Request is null");
+                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
 
             var entity = await _dbContext.Products.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Test.Application.Products.Commands.Add;
 using Test.Application.Products.Commands.Update;
+using Test.Application.ResponsesDto;
 
 namespace Test.Api.Controllers
 {
@@ -21,12 +22,14 @@ namespace Test.Api.Controllers
             _mediator = mediator;
         }
 
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProduct request)
         {
             return await _mediator.Send(request);
         }
 
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProduct request)
         {

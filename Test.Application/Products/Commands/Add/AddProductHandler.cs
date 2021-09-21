@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Test.Application.ResponsesDto;
 using Test.Domain;
 
 namespace Test.Application.Products.Commands.Add
@@ -22,7 +23,7 @@ namespace Test.Application.Products.Commands.Add
         {
 
                 if (request is null)
-                    return new BadRequestObjectResult("Request is null");
+                    return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
 
                 var entity = new Product
                 {
