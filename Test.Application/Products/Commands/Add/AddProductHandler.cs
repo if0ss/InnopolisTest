@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Test.Domain;
 
 namespace Test.Application.Products.Commands.Add
@@ -27,7 +28,7 @@ namespace Test.Application.Products.Commands.Add
                 {
                     Description = request.Description,
                     Name = request.Name,
-                    Okei = _dbContext.Okei.FirstOrDefault(e => e.Id == request.OkeiId),
+                    Okei = await _dbContext.Okei.FirstOrDefaultAsync(e => e.Id == request.OkeiId, cancellationToken),
                     UnitPrice = request.UnitPrice
                 };
 
