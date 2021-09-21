@@ -1,11 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Test.Domain;
 
 namespace Test.Application
 {
     public interface IAppDbContext
     {
-        DbSet<Storehouse> Storehouses { get; set; }
+        int SaveChanges(bool acceptAllChangesOnSuccess);
+        
+         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+
+         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+
+         DbSet<Storehouse> Storehouses { get; set; }
 
         DbSet<Product> Products { get; set; }
 

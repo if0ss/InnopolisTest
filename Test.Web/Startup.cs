@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Test.Application;
@@ -38,7 +39,7 @@ namespace Test.Web
 
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>()!);
 
-
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
