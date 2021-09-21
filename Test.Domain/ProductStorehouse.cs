@@ -5,7 +5,7 @@
     /// </summary>
     public class ProductStorehouse : IBaseEntity
     {
-        public long Id { get; }
+        public int Id { get; }
         
         public int? StorehouseId { get; set; }
         /// <summary>

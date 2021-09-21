@@ -7,7 +7,7 @@ namespace Test.Domain
     /// </summary>
     public class Product : IBaseEntity
     {
-        public long Id { get; }
+        public int Id { get; }
 
         /// <summary>
         /// Наименование

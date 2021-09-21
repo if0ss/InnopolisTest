@@ -5,7 +5,7 @@
     /// </summary>
     public class Okei : IBaseEntity
     {
-        public long Id { get; }
+        public int Id { get; }
 
         public string Name { get; set; }
         public string Code { get; set; }

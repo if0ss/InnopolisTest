@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Test.Application;
+using Test.Infrastructure;
 
 namespace Test.Web
 {
@@ -26,12 +30,23 @@ namespace Test.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                var connection = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connection);
+            });
+
+            services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>()!);
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Web", Version = "v1" });
             });
+
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
