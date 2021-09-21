@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Test.Application.Products.Commands.Add
 {
+    /// <summary>
+    /// Запрос добавления товара
+    /// </summary>
     public class AddProduct : IRequest<IActionResult>
     {
         /// <summary>

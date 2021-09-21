@@ -1,12 +1,9 @@
 ﻿namespace Test.Application.ResponsesDto
 {
-    public class BadRequestResponse
+    public class BadRequestResponse : BaseResponse
     {
-        public BadRequestResponse(string message)
+        public BadRequestResponse(string message) : base(message)
         {
-            Message = message;
         }
-
-        private string Message { get; }
     }
 }

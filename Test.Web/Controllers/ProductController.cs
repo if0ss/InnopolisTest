@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Test.Application.Products.Commands.Add;
 using Test.Application.Products.Commands.Update;
+using Test.Application.Products.Dto;
+using Test.Application.Products.Queries.GetById;
 using Test.Application.ResponsesDto;
 
 namespace Test.Api.Controllers
@@ -36,5 +38,12 @@ namespace Test.Api.Controllers
             return await _mediator.Send(request);
         }
 
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+        [HttpGet]
+        public async Task<IActionResult> GetById([FromQuery] GetProductById request)
+        {
+            return await _mediator.Send(request);
+        }
     }
 }

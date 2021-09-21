@@ -1,14 +1,11 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Test.Application.Products.Commands.Update
+﻿namespace Test.Application.Products.Dto
 {
     /// <summary>
-    /// Запрос обновления товара
+    /// Dto товара
     /// </summary>
-    public class UpdateProduct : IRequest<IActionResult>
+    public class ProductDto
     {
-        public int Id { get; set; }
+        public int Id { get; }
 
         /// <summary>
         /// Наименование
@@ -20,10 +17,8 @@ namespace Test.Application.Products.Commands.Update
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        /// Единица измерения
-        /// </summary>
         public int? OkeiId { get; set; }
+        public string OkeiName { get; set; }
 
         /// <summary>
         /// Цена за единицу
