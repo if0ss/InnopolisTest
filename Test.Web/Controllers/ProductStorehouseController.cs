@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Test.Application.ProductStorehouses.Commands.Add;
 using Test.Application.ProductStorehouses.Dto;
 using Test.Application.ProductStorehouses.Queries.GetById;
 using Test.Application.ProductStorehouses.Queries.GetList;
@@ -46,14 +47,16 @@ namespace Test.Api.Controllers
             return _mediator.Send(request);
         }
 
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPost]
-        public Task<IActionResult> AddProduct()
+        public Task<IActionResult> Add([FromBody] AddProductStorehouse request)
         {
-            throw new NotImplementedException();
+            return _mediator.Send(request);
         }
 
         [HttpDelete]
-        public Task<IActionResult> DeleteProduct()
+        public Task<IActionResult> Delete()
         {
             throw new NotImplementedException();
         }
