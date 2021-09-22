@@ -9,6 +9,7 @@ using Test.Application.Products.Commands.Add;
 using Test.Application.Products.Commands.Update;
 using Test.Application.Products.Dto;
 using Test.Application.Products.Queries.GetById;
+using Test.Application.Products.Queries.GetList;
 using Test.Application.ResponsesDto;
 
 namespace Test.Api.Controllers
@@ -42,6 +43,13 @@ namespace Test.Api.Controllers
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<IActionResult> GetById([FromQuery] GetProductById request)
+        {
+            return await _mediator.Send(request);
+        }
+
+        [ProducesResponseType(typeof(List<ProductListDto>), StatusCodes.Status200OK)]
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetProductsList request)
         {
             return await _mediator.Send(request);
         }

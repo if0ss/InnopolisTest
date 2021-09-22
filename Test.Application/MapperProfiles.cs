@@ -10,8 +10,7 @@ namespace Test.Application
         public MapperProfiles()
         {
             CreateMap<Product, UpdateProduct>().ReverseMap();
-            CreateMap<Product, ProductDto>().ReverseMap()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(e => e.Id));
+            CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Product, ProductListDto>().ReverseMap();
         }
     }
