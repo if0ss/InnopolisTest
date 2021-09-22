@@ -31,10 +31,16 @@ namespace Test.Application.Products.Queries.GetById
         public async Task<IActionResult> Handle(GetProductById request, CancellationToken cancellationToken)
         {
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
-            var dto = await _dbContext.Products.Where(e => e.Id == request.Id)
-                .ProjectTo<ProductDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
+            var entity = await _dbContext.Products.FirstOrDefaultAsync(i => i.Id == request.Id, cancellationToken);
+
+            if (entity is null)
+                return new NotFoundResult();
+
+            var dto = _mapper.Map<ProductDto>(entity);
+            //var dto = await _dbContext.Products.Where(e => e.Id == request.Id)
+            //    .ProjectTo<ProductDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
 
             return new OkObjectResult(dto);
         }

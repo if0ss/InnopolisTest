@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -27,7 +28,7 @@ namespace Test.Application.Products.Commands.Update
         public async Task<IActionResult> Handle(UpdateProduct request, CancellationToken cancellationToken)
         {
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
             var entity = await _dbContext.Products.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
@@ -41,7 +42,7 @@ namespace Test.Application.Products.Commands.Update
             _dbContext.Products.Update(entity);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
-
+          
             return new OkResult();
         }
     }

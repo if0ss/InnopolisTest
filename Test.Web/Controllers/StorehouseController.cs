@@ -29,7 +29,7 @@ namespace Test.Api.Controllers
         /// Добавление склада
         /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddStorehouse request)
         {
@@ -40,7 +40,7 @@ namespace Test.Api.Controllers
         /// Изменение склада
         /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateStorehouse request)
         {

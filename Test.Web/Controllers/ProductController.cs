@@ -29,7 +29,7 @@ namespace Test.Api.Controllers
         /// Добавление товара
         /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProduct request)
         {
@@ -40,7 +40,7 @@ namespace Test.Api.Controllers
         /// Изменение товара
         /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProduct request)
         {
@@ -50,6 +50,7 @@ namespace Test.Api.Controllers
         /// <summary>
         /// Получение товара по идентификатору
         /// </summary>
+        [ProducesResponseType(typeof(NotFoundResult), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
         [Route("{id}")]

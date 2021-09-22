@@ -29,7 +29,7 @@ namespace Test.Application.Products.Commands.Add
         {
 
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
             var entity = _mapper.Map<Product>(request);
 

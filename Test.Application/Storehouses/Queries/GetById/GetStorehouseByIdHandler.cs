@@ -26,7 +26,7 @@ namespace Test.Application.Storehouses.Queries.GetById
         public async Task<IActionResult> Handle(GetStorehouseById request, CancellationToken cancellationToken)
         {
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
             var dto = await _dbContext.Storehouses.Where(e => e.Id == request.Id)
                 .ProjectTo<StorehouseDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);

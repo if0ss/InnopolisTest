@@ -23,7 +23,7 @@ namespace Test.Application.Storehouses.Commands.Update
         public async Task<IActionResult> Handle(UpdateStorehouse request, CancellationToken cancellationToken)
         {
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
             var entity = await _dbContext.Storehouses.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 

@@ -25,9 +25,8 @@ namespace Test.Application.Storehouses.Commands.Add
 
         public async Task<IActionResult> Handle(AddStorehouse request, CancellationToken cancellationToken)
         {
-
             if (request is null)
-                return new BadRequestObjectResult(new BadRequestResponse("Request is null"));
+                return new BadRequestResponse("Request is null");
 
             var entity = _mapper.Map<Storehouse>(request);
 

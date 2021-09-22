@@ -24,22 +24,22 @@
             Получение списка товаров
             </summary>
         </member>
-        <member name="M:Test.Api.Controllers.StorehouseController.Add(Test.Application.Storehouses.Commands.Add.AddStorehouse)">
+        <member name="M:Test.Api.Controllers.StorehousesController.Add(Test.Application.Storehouses.Commands.Add.AddStorehouse)">
             <summary>
             Добавление склада
             </summary>
         </member>
-        <member name="M:Test.Api.Controllers.StorehouseController.Update(Test.Application.Storehouses.Commands.Update.UpdateStorehouse)">
+        <member name="M:Test.Api.Controllers.StorehousesController.Update(Test.Application.Storehouses.Commands.Update.UpdateStorehouse)">
             <summary>
             Изменение склада
             </summary>
         </member>
-        <member name="M:Test.Api.Controllers.StorehouseController.GetById(System.Int32)">
+        <member name="M:Test.Api.Controllers.StorehousesController.GetById(System.Int32)">
             <summary>
             Получение склада по идентификатру
             </summary>
         </member>
-        <member name="M:Test.Api.Controllers.StorehouseController.GetList(Test.Application.Storehouses.Queries.GetList.GetStorehousesList)">
+        <member name="M:Test.Api.Controllers.StorehousesController.GetList(Test.Application.Storehouses.Queries.GetList.GetStorehousesList)">
             <summary>
             Получение списка складов
             </summary>
