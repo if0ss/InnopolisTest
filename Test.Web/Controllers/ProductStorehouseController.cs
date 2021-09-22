@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Test.Application.ProductStorehouses.Commands.Add;
+using Test.Application.ProductStorehouses.Commands.Delete;
 using Test.Application.ProductStorehouses.Dto;
 using Test.Application.ProductStorehouses.Queries.GetById;
 using Test.Application.ProductStorehouses.Queries.GetList;
@@ -47,6 +48,9 @@ namespace Test.Api.Controllers
             return _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Добавление товара на склад
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPost]
@@ -55,10 +59,15 @@ namespace Test.Api.Controllers
             return _mediator.Send(request);
         }
 
-        [HttpDelete]
-        public Task<IActionResult> Delete()
+        /// <summary>
+        /// Удаление товара со склада
+        /// </summary>
+        [ProducesResponseType(typeof(NotFoundResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
+        [HttpDelete("{id}")]
+        public Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            return _mediator.Send(new DeleteProductStorehouse(id));
         }
 
         [HttpPatch]
