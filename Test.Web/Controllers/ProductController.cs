@@ -39,6 +39,7 @@ namespace Test.Api.Controllers
         /// <summary>
         /// Изменение товара
         /// </summary>
+        [ProducesResponseType(typeof(NotFoundResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPut]
@@ -50,7 +51,7 @@ namespace Test.Api.Controllers
         /// <summary>
         /// Получение товара по идентификатору
         /// </summary>
-        [ProducesResponseType(typeof(NotFoundResult), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(NotFoundResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
         [Route("{id}")]

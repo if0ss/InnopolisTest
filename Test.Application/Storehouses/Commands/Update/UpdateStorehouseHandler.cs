@@ -28,7 +28,7 @@ namespace Test.Application.Storehouses.Commands.Update
             var entity = await _dbContext.Storehouses.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (entity is null)
-                return new NotFoundResult();
+                return new NotFoundResponse($"Склад с идентификатором {request.Id} не найден");
 
             entity = _mapper.Map<Storehouse>(request);
 

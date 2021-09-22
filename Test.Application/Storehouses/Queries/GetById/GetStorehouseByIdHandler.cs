@@ -28,8 +28,12 @@ namespace Test.Application.Storehouses.Queries.GetById
             if (request is null)
                 return new BadRequestResponse("Request is null");
 
-            var dto = await _dbContext.Storehouses.Where(e => e.Id == request.Id)
-                .ProjectTo<StorehouseDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
+            var entity = await _dbContext.Storehouses.FirstOrDefaultAsync(i => i.Id == request.Id, cancellationToken);
+
+            if (entity is null)
+                return new NotFoundResponse($"Склад с идентификатором {request.Id} не найден");
+
+            var dto = _mapper.Map<StorehouseDto>(entity);
 
             return new OkObjectResult(dto);
         }

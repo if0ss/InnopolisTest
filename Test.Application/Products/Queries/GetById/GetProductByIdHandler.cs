@@ -36,7 +36,7 @@ namespace Test.Application.Products.Queries.GetById
             var entity = await _dbContext.Products.FirstOrDefaultAsync(i => i.Id == request.Id, cancellationToken);
 
             if (entity is null)
-                return new NotFoundResult();
+                return new NotFoundResponse($"Товар с идентификатором {request.Id} не найден");
 
             var dto = _mapper.Map<ProductDto>(entity);
             //var dto = await _dbContext.Products.Where(e => e.Id == request.Id)

@@ -33,7 +33,7 @@ namespace Test.Application.Products.Commands.Update
             var entity = await _dbContext.Products.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (entity is null)
-                return new NotFoundResult();
+                return new NotFoundResponse($"Товар с идентификатором {request.Id} не найден");
 
             entity = _mapper.Map<Product>(request);
 
@@ -42,7 +42,7 @@ namespace Test.Application.Products.Commands.Update
             _dbContext.Products.Update(entity);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
-          
+
             return new OkResult();
         }
     }
