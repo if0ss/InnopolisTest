@@ -5,7 +5,7 @@
     /// </summary>
     public class ProductDto
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Наименование

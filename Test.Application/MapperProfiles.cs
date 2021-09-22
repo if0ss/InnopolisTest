@@ -1,6 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Data;
+using AutoMapper;
+using Test.Application.Products.Commands.Add;
 using Test.Application.Products.Commands.Update;
 using Test.Application.Products.Dto;
+using Test.Application.Storehouses.Commands.Add;
+using Test.Application.Storehouses.Commands.Update;
+using Test.Application.Storehouses.Dto;
 using Test.Domain;
 
 namespace Test.Application
@@ -9,9 +14,15 @@ namespace Test.Application
     {
         public MapperProfiles()
         {
+            CreateMap<Product, AddProduct>().ReverseMap();
             CreateMap<Product, UpdateProduct>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Product, ProductListDto>().ReverseMap();
+
+            CreateMap<Storehouse, AddStorehouse>().ReverseMap();
+            CreateMap<Storehouse, UpdateStorehouse>().ReverseMap();
+            CreateMap<Storehouse, StorehouseDto>().ReverseMap();
+            CreateMap<Storehouse, StorehouseListDto>().ReverseMap();
         }
     }
 }

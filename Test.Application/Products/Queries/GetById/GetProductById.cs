@@ -10,6 +10,11 @@ namespace Test.Application.Products.Queries.GetById
     /// </summary>
     public class GetProductById : IRequest<IActionResult>
     {
+        public GetProductById(int id)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
     }
 }

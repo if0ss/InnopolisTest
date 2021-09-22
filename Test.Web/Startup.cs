@@ -9,7 +9,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -34,8 +36,10 @@ namespace Test.Web
         {
             services.AddDbContext<IAppDbContext, AppDbContext>(options =>
             {
+                options.EnableSensitiveDataLogging();
+
                 var connection = Configuration.GetConnectionString("DefaultConnection");
-                options.UseSqlServer(connection);
+                options.UseSqlServer(connection).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
             
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
@@ -46,6 +50,10 @@ namespace Test.Web
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Api", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
          

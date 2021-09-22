@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Test.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Test.Api.Controllers.ProductsController.Add(Test.Application.Products.Commands.Add.AddProduct)">
+            <summary>
+            Добавление товара
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductsController.Update(Test.Application.Products.Commands.Update.UpdateProduct)">
+            <summary>
+            Изменение товара
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductsController.GetById(System.Int32)">
+            <summary>
+            Получение товара по идентификатору
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductsController.GetList(Test.Application.Products.Queries.GetList.GetProductsList)">
+            <summary>
+            Получение списка товаров
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.StorehouseController.Add(Test.Application.Storehouses.Commands.Add.AddStorehouse)">
+            <summary>
+            Добавление склада
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.StorehouseController.Update(Test.Application.Storehouses.Commands.Update.UpdateStorehouse)">
+            <summary>
+            Изменение склада
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.StorehouseController.GetById(System.Int32)">
+            <summary>
+            Получение склада по идентификатру
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.StorehouseController.GetList(Test.Application.Storehouses.Queries.GetList.GetStorehousesList)">
+            <summary>
+            Получение списка складов
+            </summary>
+        </member>
+    </members>
+</doc>

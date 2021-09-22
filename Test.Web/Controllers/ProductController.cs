@@ -14,39 +14,54 @@ using Test.Application.ResponsesDto;
 
 namespace Test.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public ProductsController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Добавление товара
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddProduct request)
         {
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Изменение товара
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProduct request)
         {
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Получение товара по идентификатору
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+        [Route("{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetById([FromQuery] GetProductById request)
+        public async Task<IActionResult> GetById(int id)
         {
-            return await _mediator.Send(request);
+            return await _mediator.Send(new GetProductById(id));
         }
 
+        /// <summary>
+        /// Получение списка товаров
+        /// </summary>
         [ProducesResponseType(typeof(List<ProductListDto>), StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetProductsList request)

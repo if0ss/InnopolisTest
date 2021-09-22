@@ -14,39 +14,54 @@ using Test.Application.ResponsesDto;
 
 namespace Test.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class StorehouseController : ControllerBase
+    public class StorehousesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public StorehouseController(IMediator mediator)
+        public StorehousesController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Добавление склада
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddStorehouse request)
         {
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Изменение склада
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateStorehouse request)
         {
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Получение склада по идентификатру
+        /// </summary>
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(StorehouseDto), StatusCodes.Status200OK)]
+        [Route("{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetById([FromQuery] GetStorehouseById request)
+        public async Task<IActionResult> GetById(int id)
         {
-            return await _mediator.Send(request);
+            return await _mediator.Send(new GetStorehouseById(id));
         }
 
+        /// <summary>
+        /// Получение списка складов
+        /// </summary>
         [ProducesResponseType(typeof(List<StorehouseListDto>), StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetStorehousesList request)
