@@ -8,7 +8,7 @@ namespace Test.Domain
     /// </summary>
     public class Storehouse : IBaseEntity
     {
-        public int Id { get; }
+        public int Id { get; set; }
         
         public string Address { get; set; }
 
