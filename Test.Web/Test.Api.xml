@@ -24,6 +24,16 @@
             Получение списка товаров
             </summary>
         </member>
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.Get(System.Int32)">
+            <summary>
+            Получение товара на складе по идентификатору
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.Get(Test.Application.ProductStorehouses.Queries.GetList.GetProductStorehouseList)">
+            <summary>
+            Получение списка товара на складе
+            </summary>
+        </member>
         <member name="M:Test.Api.Controllers.StorehousesController.Add(Test.Application.Storehouses.Commands.Add.AddStorehouse)">
             <summary>
             Добавление склада

@@ -22,6 +22,6 @@
         /// <summary>
         /// Количество
         /// </summary>
-        public decimal? Count { get; set; }
+        public uint Count { get; set; }
     }
 }
