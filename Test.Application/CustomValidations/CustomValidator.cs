@@ -2,7 +2,7 @@
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Test.Application.Customs
+namespace Test.Application.CustomValidations
 {
     /// <summary>
     /// Кастомный валидатор сущности

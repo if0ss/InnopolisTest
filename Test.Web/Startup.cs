@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Test.Application;
+using Test.Application.Behaviors;
+using Test.Application.CustomValidations;
 using Test.Infrastructure;
 
 namespace Test.Api
@@ -33,12 +36,22 @@ namespace Test.Api
                 var connection = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connection).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-            
+
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.Scan(scan => scan
+                .FromApplicationDependencies(assembly => !assembly.Equals(typeof(IValidator).Assembly))
+                .AddClasses(f => f.AssignableTo(typeof(IValidator)))
+                .AsImplementedInterfaces()
+                .WithTransientLifetime());
+
+            //services.AddFluentValidation().AddValidatorsFromAssemblyContaining(typeof(CustomAbstractValidator<>));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddControllers();
+            services.AddControllers(opt=> opt.Filters.Add(new ExceptionFilter()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Api", Version = "v1" });
@@ -48,7 +61,7 @@ namespace Test.Api
                 c.IncludeXmlComments(xmlPath);
             });
 
-         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

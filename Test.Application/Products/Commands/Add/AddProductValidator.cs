@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Test.Application.Customs;
+using Test.Application.CustomValidations;
 
 namespace Test.Application.Products.Commands.Add
 {

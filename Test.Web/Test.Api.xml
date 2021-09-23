@@ -44,7 +44,7 @@
             Удаление товара со склада
             </summary>
         </member>
-        <member name="M:Test.Api.Controllers.ProductStorehouseController.ChangeCount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Test.Application.ProductStorehouses.Dto.TestDto})">
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.ChangeCount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Test.Application.ProductStorehouses.Commands.Patch.UpdatePatchProductStorehouseDto})">
             <summary>
             Изменение количества товара на складе
             </summary>
