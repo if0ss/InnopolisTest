@@ -28,6 +28,7 @@ namespace Test.Api.Controllers
         /// <summary>
         /// Добавление товара
         /// </summary>
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
         [HttpPost]
