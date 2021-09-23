@@ -34,6 +34,21 @@
             Получение списка товара на складе
             </summary>
         </member>
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.Add(Test.Application.ProductStorehouses.Commands.Add.AddProductStorehouse)">
+            <summary>
+            Добавление товара на склад
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.Delete(System.Int32)">
+            <summary>
+            Удаление товара со склада
+            </summary>
+        </member>
+        <member name="M:Test.Api.Controllers.ProductStorehouseController.ChangeCount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Test.Application.ProductStorehouses.Dto.TestDto})">
+            <summary>
+            Изменение количества товара на складе
+            </summary>
+        </member>
         <member name="M:Test.Api.Controllers.StorehousesController.Add(Test.Application.Storehouses.Commands.Add.AddStorehouse)">
             <summary>
             Добавление склада

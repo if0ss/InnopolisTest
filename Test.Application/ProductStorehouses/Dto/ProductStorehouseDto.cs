@@ -13,6 +13,6 @@
 
         public decimal? ProductUnitPrice { get; set; }
 
-        public decimal? Count { get; set; }
+        public int? Count { get; set; }
     }
 }

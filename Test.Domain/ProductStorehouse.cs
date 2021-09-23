@@ -22,6 +22,6 @@
         /// <summary>
         /// Количество
         /// </summary>
-        public uint Count { get; set; }
+        public int Count { get; set; }
     }
 }
