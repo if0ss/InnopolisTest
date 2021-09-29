@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Test.Domain
+﻿namespace Test.Application.Products.Dto
 {
     /// <summary>
-    /// Товар
+    /// Dto товара
     /// </summary>
-    public class Product : IBaseEntity
+    public class ProductDto
     {
         public int Id { get; set; }
 
@@ -19,19 +17,12 @@ namespace Test.Domain
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        /// Единица измерения
-        /// </summary>
-        public virtual Okei Okei { get; set; }
+        public int? OkeiId { get; set; }
+        public string OkeiName { get; set; }
 
         /// <summary>
         /// Цена за единицу
         /// </summary>
         public decimal? UnitPrice { get; set; }
-
-        /// <summary>
-        /// Склады
-        /// </summary>
-        public virtual IList<ProductStorehouse> Storehouses { get; set; }
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Test.Domain
+namespace Test.Application.Products.Commands.Update
 {
     /// <summary>
-    /// Товар
+    /// Запрос обновления товара
     /// </summary>
-    public class Product : IBaseEntity
+    public class UpdateProduct : IRequest<IActionResult>
     {
         public int Id { get; set; }
 
@@ -22,16 +23,11 @@ namespace Test.Domain
         /// <summary>
         /// Единица измерения
         /// </summary>
-        public virtual Okei Okei { get; set; }
+        public int? OkeiId { get; set; }
 
         /// <summary>
         /// Цена за единицу
         /// </summary>
         public decimal? UnitPrice { get; set; }
-
-        /// <summary>
-        /// Склады
-        /// </summary>
-        public virtual IList<ProductStorehouse> Storehouses { get; set; }
     }
 }

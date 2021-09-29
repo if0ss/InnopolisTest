@@ -5,7 +5,7 @@
     /// </summary>
     public class ProductStorehouse : IBaseEntity
     {
-        public long Id { get; }
+        public int Id { get; set; }
         
         public int? StorehouseId { get; set; }
         /// <summary>
@@ -22,6 +22,6 @@
         /// <summary>
         /// Количество
         /// </summary>
-        public decimal? Count { get; set; }
+        public int Count { get; set; }
     }
 }

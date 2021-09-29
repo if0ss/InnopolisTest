@@ -1,18 +1,21 @@
+using System;
+using System.IO;
+using System.Reflection;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Test.Application;
+using Test.Application.Behaviors;
+using Test.Application.CustomValidations;
+using Test.Infrastructure;
 
-namespace Test.Web
+namespace Test.Api
 {
     public class Startup
     {
@@ -26,12 +29,39 @@ namespace Test.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<IAppDbContext, AppDbContext>(options =>
+            {
+                options.EnableSensitiveDataLogging();
 
-            services.AddControllers();
+                var connection = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connection).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
+
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.Scan(scan => scan
+                .FromApplicationDependencies(assembly => !assembly.Equals(typeof(IValidator).Assembly))
+                .AddClasses(f => f.AssignableTo(typeof(IValidator)))
+                .AsImplementedInterfaces()
+                .WithTransientLifetime());
+
+            //services.AddFluentValidation().AddValidatorsFromAssemblyContaining(typeof(CustomAbstractValidator<>));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddControllers(opt=> opt.Filters.Add(new ExceptionFilter()));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Api", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
